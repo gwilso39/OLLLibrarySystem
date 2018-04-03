@@ -7,5 +7,7 @@ namespace OLLLibrarySystem
 {
     public class Book
     {
+        string title;
+        string author;
     }
 }
