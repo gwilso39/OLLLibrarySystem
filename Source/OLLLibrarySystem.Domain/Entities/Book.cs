@@ -7,8 +7,8 @@ namespace OLLLibrarySystem.Domain.Entities
     public class Book
     {
         public int BookID { get; set; }
-        public int UpperLexile { get; set; }
-        public int LowerLexile { get; set; }
+        public int LexileUpper { get; set; }
+        public int LexileLower { get; set; }
         public int Location { get; set; }
         public int CheckedOutIn { get; set; }
         public int RecAge { get; set; }

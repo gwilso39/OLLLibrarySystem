@@ -5,14 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using OLLLibrarySystem.Domain.Abstract;
 using OLLLibrarySystem.Domain.Entities;
-using OLLLibrarySystem.WebUI.Models;
 
-namespace OLLLibrarySystem.Controllers
+namespace OLLLibrarySystem.WebUI.Controllers
 {
     public class BookController : Controller
     {
         private IEntitiesRepository repository;
-        public int PageSize = 4;
 
         public BookController(IEntitiesRepository bookRepository)
         {
