@@ -11,10 +11,9 @@ namespace OLLLibrarySystem.Domain.Abstract
         IEnumerable<Age> Age { get; }
         IEnumerable<Book> Book { get; }
         IEnumerable<CheckedOutIn> CheckedOutIn { get; }
-        IEnumerable<Lexile> Lexile { get; }
         IEnumerable<Location> Location { get; }
         IEnumerable<Media> Media { get; }
         IEnumerable<Subject> Subject { get; }
-        IEnumerable<User> User { get; }
+        IEnumerable<Users> Users { get; }
     }
 }

@@ -149,18 +149,18 @@ GO
 
 USE LourdesAcademy;
 
-DROP TABLE IF EXISTS Subjects;
+DROP TABLE IF EXISTS Subject;
 
-CREATE TABLE Subjects
+CREATE TABLE Subject
 (
-	subjectid			int IDENTITY(1,1)				NOT NULL,
-	subjectdescription	nvarchar(60)	NOT NULL,
+	SubjectID			int IDENTITY(1,1)		NOT NULL,
+	Description			nvarchar(60)			NOT NULL,
 
-		CONSTRAINT PK_Subjects
-		  PRIMARY KEY (subjectid)
+		CONSTRAINT PK_Subject
+		  PRIMARY KEY (SubjectID)
 );
 
-INSERT INTO Subjects (subjectdescription) 
+INSERT INTO Subject (Description) 
 	values	('Religion'),
 			('Science'),
 			('History'),
@@ -172,44 +172,45 @@ DROP TABLE IF EXISTS Access;
 
 CREATE TABLE Access
 (
-	accessid		int IDENTITY(1,1)		NOT NULL,
-	accesslevel		nvarchar(20)			NOT NULL,
+	AccessID		int IDENTITY(1,1)		NOT NULL,
+	AccessLevel		nvarchar(20)			NOT NULL,
 
 		CONSTRAINT PK_Acess
-		  PRIMARY KEY (accessid)
+		  PRIMARY KEY (AccessID)
 );
 
-INSERT INTO Access (accesslevel)
+INSERT INTO Access (AccessLevel)
 	values ('Administrator'), ('Faculty'), ('Staff'), ('Student');
 
 
-DROP TABLE IF EXISTS GradeLevel;
+--No longer need this table to track grade levels. 4/23/2018
+--DROP TABLE IF EXISTS GradeLevel;
 
-CREATE TABLE GradeLevel
-(
-	gradelevelid			int IDENTITY(1,1)		NOT NULL,
-	gradeleveldescription	nvarchar(20)			NOT NULL,
+--CREATE TABLE GradeLevel
+--(
+--	gradelevelid			int IDENTITY(1,1)		NOT NULL,
+--	gradeleveldescription	nvarchar(20)			NOT NULL,
 
-		CONSTRAINT PK_GradeLevel
-		  PRIMARY KEY (gradelevelid)
-);
+--		CONSTRAINT PK_GradeLevel
+--		  PRIMARY KEY (gradelevelid)
+--);
 
-INSERT INTO GradeLevel (gradeleveldescription) 
-	values (3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
+--INSERT INTO GradeLevel (gradeleveldescription) 
+--	values (3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
 
 
 DROP TABLE IF EXISTS Age;
 
 CREATE TABLE Age
 (
-	ageid		int IDENTITY(1,1)			NOT NULL,
-	age			int			NOT NULL,
+	AgeID		int IDENTITY(1,1)			NOT NULL,
+	AgeYears	int			NOT NULL,
 
 		CONSTRAINT PK_Age
-		  PRIMARY KEY (ageid)
+		  PRIMARY KEY (AgeID)
 );
 
-INSERT INTO Age (age) 
+INSERT INTO Age (AgeYears) 
 	values (5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(00);
 
 
@@ -217,20 +218,20 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users
 (
-	userid			int IDENTITY(1,1)			NOT NULL,
-	fname			nvarchar(10)	NOT NULL,
-	lname			nvarchar(20)	NOT NULL,
-	userpassword	text			NOT NULL,
-	accessid		int				NOT NULL,
+	UserID			int IDENTITY(1,1)			NOT NULL,
+	FName			nvarchar(10)	NOT NULL,
+	LName			nvarchar(20)	NOT NULL,
+	Password		text			NOT NULL,
+	Type			int				NOT NULL,
 	
 		CONSTRAINT PK_Users
-		  PRIMARY KEY (userid),
-		  FOREIGN KEY (accessid)
-			REFERENCES Access(accessid)				
+		  PRIMARY KEY (UserID),
+		  FOREIGN KEY (Type)
+			REFERENCES Access(AccessID)				
 );
 
 
-INSERT INTO dbo.Users (fname, lname, userpassword, accessid)
+INSERT INTO Users (FName, LName, Password, Type)
 	values	('Melanie', 'Wilson', 'OLLAdministrator', 1),
 			('Bernie', 'O''Leary', 'OLLFaculty', 4),
 			('Leslie', 'Powers', 'OLLFaculty', 4),
@@ -246,21 +247,21 @@ INSERT INTO dbo.Users (fname, lname, userpassword, accessid)
 			('Jesse', 'Rutherford', 'OLLStudent', 2);
 
 
-DROP TABLE IF EXISTS Locations;
+DROP TABLE IF EXISTS Location;
 
-CREATE TABLE Locations
+CREATE TABLE Location
 (
-	locationid			int IDENTITY(1,1)				NOT NULL,
-	locationadmin		int				NOT NULL,
-	locationdescription nvarchar(60)    NOT NULL,
+	LocationID			int IDENTITY(1,1)				NOT NULL,
+	Admin			int				NOT NULL,
+	Description		nvarchar(60)    NOT NULL,
 
-		CONSTRAINT PK_Locations
-		  PRIMARY KEY (locationid),
-		  FOREIGN KEY (locationadmin)
-			REFERENCES Users(userid)
+		CONSTRAINT PK_Location
+		  PRIMARY KEY (LocationID),
+		  FOREIGN KEY (Admin)
+			REFERENCES Users(UserID)
 );
 
-INSERT INTO dbo.Locations (locationadmin, locationdescription) 
+INSERT INTO Location (Admin, Description) 
 	values	(1, 'Media Center'),
 			(1, 'Middle School ELA'),
 			(1, 'Middle School Social Studies'),
@@ -276,19 +277,18 @@ DROP TABLE IF EXISTS CheckedOutIn;
 
 CREATE TABLE CheckedOutIn
 (
-	checkedoutinid	int IDENTITY(1,1)			NOT NULL,
-	itemstatus		nvarchar(11)				NOT NULL,
-	userid			int							NULL,
-	datecheckedout	date						NULL,
+	CheckedOutInID	int IDENTITY(1,1)			NOT NULL,
+	Status		nvarchar(11)				NOT NULL,
+	UserID			int							NULL,
 
 		CONSTRAINT PK_CheckedOutIn
-		  PRIMARY KEY (checkedoutinid),
-		  FOREIGN KEY (userid)
-			REFERENCES Users(userid)
+		  PRIMARY KEY (CheckedOutInID),
+		  FOREIGN KEY (UserID)
+			REFERENCES Users(UserID)
 
 );
 
-INSERT INTO CheckedOutIn (itemstatus) 
+INSERT INTO CheckedOutIn (Status) 
 	values	('In'), ('Out'), ('Hold'), ('Restricted');
 
 
@@ -296,34 +296,34 @@ DROP TABLE IF EXISTS Media;
 
 CREATE TABLE Media
 (
-	mediaid				int IDENTITY(1,1)			NOT NULL,
-	locationid			int				NOT NULL,
-	subjectid			int				NOT NULL,
-	checkedoutinid		int				NOT NULL,
-	ageid				int				NOT NULL,
-	mediatype			nvarchar(25)	NOT NULL,
-	title				nvarchar(40)	NOT NULL,
-	producer			nvarchar(30)	NOT NULL,
-	rating				nvarchar(10)	NOT NULL,
-	photo				text			NULL,
-	media_description	text			NOT NULL,
-	media_genre			nvarchar(10)	NOT NULL,
-	runningtime			text			NOT NULL,
+	MediaID				int IDENTITY(1,1)			NOT NULL,
+	LocationID			int				NOT NULL,
+	Subject			int				NOT NULL,
+	CheckedOutInID		int				NOT NULL,
+	RecAge				int				NOT NULL,
+	Type			nvarchar(25)	NOT NULL,
+	Title				nvarchar(40)	NOT NULL,
+	Producer			nvarchar(30)	NOT NULL,
+	Rating				nvarchar(10)	NOT NULL,
+	Photo				text			NULL,
+	Description		text			NOT NULL,
+	Genre			nvarchar(25)	NOT NULL,
+	Runningtime			text			NOT NULL,
 
 		CONSTRAINT PK_Media
-		  PRIMARY KEY (mediaid),
-		  FOREIGN KEY (locationid)
-			REFERENCES Locations(locationid),
-		  FOREIGN KEY (subjectid)
-			REFERENCES Subjects(subjectid),
-		  FOREIGN KEY (checkedoutinid)
-			REFERENCES CheckedOutIn(checkedoutinid),
-		  FOREIGN KEY (ageid)
-			REFERENCES Age(ageid)
+		  PRIMARY KEY (MediaID),
+		  FOREIGN KEY (LocationID)
+			REFERENCES Location(LocationID),
+		  FOREIGN KEY (Subject)
+			REFERENCES Subject(SubjectID),
+		  FOREIGN KEY (CheckedOutInId)
+			REFERENCES CheckedOutIn(CheckedOutInID),
+		  FOREIGN KEY (RecAge)
+			REFERENCES Age(AgeID)
 );
 
-INSERT INTO Media	(locationid, subjectid, checkedoutinid, ageid, mediatype, title,
-					producer, rating, photo, media_description, media_genre, runningtime)
+INSERT INTO Media	(LocationID, Subject, CheckedOutInID, RecAge, Type, Title,
+					Producer, Rating, Photo, Description, Genre, Runningtime)
 	values	
 			(1, 5, 1, 8, 'DVD', 'Diary of Anne Franke',
 			'BBC', 'PG','',
@@ -339,57 +339,49 @@ INSERT INTO Media	(locationid, subjectid, checkedoutinid, ageid, mediatype, titl
 			place called the shack!', 'Drama', '132');
 
 
-DROP TABLE IF EXISTS Books;
+DROP TABLE IF EXISTS Book;
 
-CREATE TABLE Books
+CREATE TABLE Book
 (
-	bookid				int IDENTITY(1,1)				NOT NULL,
-	lexilescore			int				NOT NULL,
-	gradelower			int				NOT NULL,
-	gradeupper			int				NOT NULL,
-	locationid			int				NOT NULL,
-	checkedoutinid		int				NOT NULL,
-	loweragerange		int				NOT NULL,
-	upperagerange		int				NULL,
-	title				nvarchar(40)	NOT NULL,
-	author				nvarchar(40)	NOT NULL,
-	genre				nvarchar(25)	NOT NULL,
-	book_description	text			NOT NULL,
-	photo				text			NULL,
-	replacementcost		money			NOT NULL,
-	isbn#				varchar(30)		NOT NULL,
+	BookID				int IDENTITY(1,1)				NOT NULL,
+	LexileUpper			int				NOT NULL,
+	LexileLower			int				NOT NULL,
+	LocationID			int				NOT NULL,
+	CheckedOutInID		int				NOT NULL,
+	RecAge				int				NULL,
+	Title				nvarchar(40)	NOT NULL,
+	Author				nvarchar(40)	NOT NULL,
+	Genre				nvarchar(25)	NOT NULL,
+	Description			text			NOT NULL,
+	Photo				text			NULL,
+	ReplacementCost		money			NOT NULL,
+	ISBN				varchar(30)		NOT NULL,
 
-		CONSTRAINT PK_Books
-		  PRIMARY KEY (bookid),
-		  FOREIGN KEY (locationid)
-			REFERENCES Locations(locationid),
-		  FOREIGN KEY (checkedoutinid)
-			REFERENCES CheckedOutIn(checkedoutinid),
-		  FOREIGN KEY (upperagerange)
-			REFERENCES Age(ageid),
-		  FOREIGN KEY (loweragerange)
-			REFERENCES Age(ageid),
-		  FOREIGN KEY (gradelower)
-			REFERENCES GradeLevel(gradelevelid),
-		  FOREIGN KEY (gradeupper)
-			REFERENCES GradeLevel(gradelevelid),
+		CONSTRAINT PK_Book
+		  PRIMARY KEY (BookID),
+		  FOREIGN KEY (LocationID)
+			REFERENCES Location(LocationID),
+		  FOREIGN KEY (CheckedOutInID)
+			REFERENCES CheckedOutIn(CheckedOutInID),
+		  FOREIGN KEY (RecAge)
+			REFERENCES Age(AgeID),
 );
 
-INSERT INTO Books (lexilescore, gradelower, gradeupper, locationid, checkedoutinid, loweragerange, upperagerange,
-					title, author, genre, book_description, photo, replacementcost, isbn#)
-	values	  (1040, 3, 5, 2, 1, 6, 8, 'Farewell to Manzanar', 'Jeanne Wakatsuki Houston', 'Non-Fiction',
+INSERT INTO Book (LexileUpper, LexileLower, LocationID, CheckedOutInID, RecAge,
+					Title, Author, Genre, Description, Photo, ReplacementCost, ISBN)
+	values	  (1040, 800, 3, 2, 1, 'Farewell to Manzanar', 'Jeanne Wakatsuki Houston', 'Non-Fiction',
 			 'During WWII a community called Manzanar was created in the high mountain desert
 			  country of California.  Its purpose was to house thousands of Japanese Americans.',
-			  '',10, 1328742113),
-			  (700, 4, 10, 2, 1, 10, 11, 'Girl, Stolen', 'April Henry', 'Mystery/Suspense',
+			  '', 10, 1328742113),
+			  (700, 500, 4, 2, 1, 'Girl, Stolen', 'April Henry', 'Mystery/Suspense',
 			 'When Cheyenne''s mother stops to fill a prescription for her pneumonia, a thief
 			  steals the car with Cheyenne asleep in the back seat.  Can a blind, sick girl
 			  manage to escape her kidnapper?',
-			  '',5, 139780545921756),
-			  (700, 6, 10, 2, 1, 8, 11, 'Divergent', 'Veronica Roth', 'Science Fiction',
+			  '', 5, 139780545921756),
+			  (700, 500, 6, 2, 1, 'Divergent', 'Veronica Roth', 'Science Fiction',
 			 'Post apocalyptic Chicago is organized into 5 distinct factions. Each focuses on a particular
 			 virtue. At age 16, Beatrice must decide who she will be.',
-			  '',12, 139780062387240);
+			  '', 12, 139780062387240);
 
 USE LourdesAcademy;
 
@@ -401,7 +393,7 @@ SELECT *
 
 
 SELECT *
-  FROM Subjects;
+  FROM Subject;
 
 SELECT *
   FROM CheckedOutIn;
@@ -409,22 +401,22 @@ SELECT *
 SELECT *
   FROM Users as U
     JOIN Access as A
-	  ON a.accessid = u.accessid
+	  ON a.accessid = u.type
   WHERE a.accessid > 2;
 
 
 SELECT u.fname, u.lname, a.accesslevel
 	FROM Users as U
 	  JOIN Access as A
-	    ON A.accessid = U.accessid
+	    ON A.accessid = U.type
 	WHERE accesslevel = 'Student';
 
 SELECT *
 	  FROM Age;
 
-SELECT B.title, L.locationdescription, U.fname, U.lname
-	FROM Books as B
-	Join Locations as L
+SELECT B.title, L.description, U.fname, U.lname
+	FROM Book as B
+	Join Location as L
 	  ON B.locationid = L.locationid
 	  JOIN Users as U
-	    ON U.userid = L.locationadmin
+	    ON U.userid = L.admin

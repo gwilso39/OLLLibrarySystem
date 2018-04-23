@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OLLLibrarySystem.Domain\OLLLibrarySystem.Domain.csproj">
-      <Project>{301af891-4763-44db-afe1-68ea7e22f29c}</Project>
+      <Project>{b31c5ba2-35d8-4cc6-992a-e47717208079}</Project>
       <Name>OLLLibrarySystem.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\OLLLibrarySystem\OLLLibrarySystem.WebUI.csproj">

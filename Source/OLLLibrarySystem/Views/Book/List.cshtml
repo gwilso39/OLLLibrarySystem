@@ -1,20 +1,22 @@
 ﻿@using OLLLibrarySystem.Domain.Entities
-@model IEnumerable<Book>
+@model OLLLibrarySystem.WebUI.Models.BookListViewModel
 
 @{
     ViewBag.Title = "Lourdes Academy Books";
 }
 
-@foreach (var p in Model)
+@foreach (var p in Model.Book)
 {
-    <div>
-        <h3>@p.Title</h3>
-        @p.Description
-        @p.Author
-        <h4>@p.CheckedOutIn</h4>
-    </div>
+<div class="well">
+    <h3>
+        <strong><I>@p.Title</I></strong>
+        by @p.Author
+        <span class="pull-right label label-primary">@p.CheckedOutInID</span>
+    </h3>
+    <span class="lead"> @p.Description</span>
+</div>
 }
 
-@*<div class="pager">
+<div class="pager">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
-</div>*@
+</div>

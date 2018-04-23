@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.WebUI", "OLLLibrarySystem\OLLLibrarySystem.WebUI.csproj", "{ACA46DCD-BF04-4620-8828-C0559F093B70}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OLLLibrarySystem.Domain", "OLLLibrarySystem.Domain\OLLLibrarySystem.Domain.csproj", "{301AF891-4763-44DB-AFE1-68EA7E22F29C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B31C5BA2-35D8-4CC6-992A-E47717208079} = {B31C5BA2-35D8-4CC6-992A-E47717208079}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.UnitTests", "OLLLibrarySystem.UnitTests\OLLLibrarySystem.UnitTests.csproj", "{2CB736A1-4FA4-4261-848A-752388BC10EC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B31C5BA2-35D8-4CC6-992A-E47717208079} = {B31C5BA2-35D8-4CC6-992A-E47717208079}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.Domain", "OLLLibrarySystem.Domain\OLLLibrarySystem.Domain.csproj", "{B31C5BA2-35D8-4CC6-992A-E47717208079}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +25,14 @@ Global
 		{ACA46DCD-BF04-4620-8828-C0559F093B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA46DCD-BF04-4620-8828-C0559F093B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA46DCD-BF04-4620-8828-C0559F093B70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{301AF891-4763-44DB-AFE1-68EA7E22F29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{301AF891-4763-44DB-AFE1-68EA7E22F29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{301AF891-4763-44DB-AFE1-68EA7E22F29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{301AF891-4763-44DB-AFE1-68EA7E22F29C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CB736A1-4FA4-4261-848A-752388BC10EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CB736A1-4FA4-4261-848A-752388BC10EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CB736A1-4FA4-4261-848A-752388BC10EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CB736A1-4FA4-4261-848A-752388BC10EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31C5BA2-35D8-4CC6-992A-E47717208079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31C5BA2-35D8-4CC6-992A-E47717208079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31C5BA2-35D8-4CC6-992A-E47717208079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31C5BA2-35D8-4CC6-992A-E47717208079}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,11 +12,10 @@ namespace OLLLibrarySystem.Domain.Concrete
         public DbSet<Access> Access { get; set; }
         public DbSet<Age> Age { get; set; }
         public DbSet<CheckedOutIn> CheckedOutIn { get; set; }
-        public DbSet<Lexile> Lexile { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<Subject> Subject { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Users> Users { get; set; }
 
     }
 }
