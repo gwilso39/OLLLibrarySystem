@@ -1,0 +1,10 @@
+﻿@model OLLLibrarySystem.Domain.Entities.Book
+
+<div class="well">
+    <h3>
+        <strong><I>@Model.Title</I></strong>
+        by @Model.Author
+        <span class="pull-right label label-primary">@Model.CheckedOutInID</span>
+    </h3>
+    <span class="lead"> @Model.Description</span>
+</div>

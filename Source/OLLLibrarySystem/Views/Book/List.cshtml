@@ -7,14 +7,7 @@
 
 @foreach (var p in Model.Book)
 {
-<div class="well">
-    <h3>
-        <strong><I>@p.Title</I></strong>
-        by @p.Author
-        <span class="pull-right label label-primary">@p.CheckedOutInID</span>
-    </h3>
-    <span class="lead"> @p.Description</span>
-</div>
+    @Html.Partial("BookSummary", p)
 }
 
 <div class="pager">
