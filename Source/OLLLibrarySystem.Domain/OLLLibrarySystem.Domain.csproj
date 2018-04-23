@@ -74,6 +74,7 @@
     <Compile Include="Entities\Access.cs" />
     <Compile Include="Entities\Age.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CheckedOutIn.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Media.cs" />

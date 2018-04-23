@@ -13,17 +13,35 @@ namespace OLLLibrarySystem
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: null,
-                url: "Page{page}",
-                defaults: new { Controller = "Book", action = "List" }
+            routes.MapRoute(null,
+                "",
+                new
+                {
+                    controller = "Book",
+                    action = "List",
+                    category = (string)null,
+                    page = 1
+                }
             );
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Book", action = "List", id = UrlParameter.Optional }
+            routes.MapRoute(null,
+                "Page{page}",
+                new { controller = "Book", action = "List", category = (string)null },
+                new { page = @"\d+" }
             );
+
+            routes.MapRoute(null,
+                "{Genre}",
+                new { controller = "Book", action = "List", page = 1 }
+            );
+
+            routes.MapRoute(null,
+                "{Genre}/Page{page}",
+                new { controller = "Book", action = "List" },
+                new { page = @"\d+" }
+            );
+
+            routes.MapRoute(null, "{controller}/{action}");
         }
     }
 }
