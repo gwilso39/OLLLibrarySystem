@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.WebUI", "OLLLibrarySystem\OLLLibrarySystem.WebUI.csproj", "{ACA46DCD-BF04-4620-8828-C0559F093B70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.Domain", "OLLLibrarySystem.Domain\OLLLibrarySystem.Domain.csproj", "{301AF891-4763-44DB-AFE1-68EA7E22F29C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OLLLibrarySystem.Domain", "OLLLibrarySystem.Domain\OLLLibrarySystem.Domain.csproj", "{301AF891-4763-44DB-AFE1-68EA7E22F29C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OLLLibrarySystem.UnitTests", "OLLLibrarySystem.UnitTests\OLLLibrarySystem.UnitTests.csproj", "{2CB736A1-4FA4-4261-848A-752388BC10EC}"
 EndProject
