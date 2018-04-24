@@ -12,16 +12,16 @@
     color: aliceblue;
 }
 
+.navbar-inverse .navbar-text {
+    color: #000;
+}
+
 .navbar-inverse .navbar-brand:hover {
     color: #cac8c8;
 }
 
 .well {
     background-color: #9ee9e4;
-}
-
-.label-primary {
-
 }
 
 /* Set padding to keep content from hitting the edges */

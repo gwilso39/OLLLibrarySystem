@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,6 +36,14 @@ namespace OLLLibrarySystem.WebUI.Infrastructure
         {
             kernel.Bind<IEntitiesRepository>().To<EFEntitiesRepository>();
 
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager
+                    .AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
+                .WithConstructorArgument("settings", emailSettings);
 
             //Mock<IEntitiesRepository> mock = new Mock<IEntitiesRepository>();
             //mock.Setup(m => m.Book).Returns(new List<Book>

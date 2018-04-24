@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using OLLLibrarySystem.Domain.Entities;
+using OLLLibrarySystem.WebUI.Infrastructure.Binders;
 
 namespace OLLLibrarySystem
 {
@@ -16,6 +18,7 @@ namespace OLLLibrarySystem
             // Code that runs on application startup
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }

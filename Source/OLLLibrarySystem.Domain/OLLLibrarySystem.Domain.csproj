@@ -69,8 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IEntitiesRepository.cs" />
+    <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFEntitiesRepository.cs" />
+    <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Access.cs" />
     <Compile Include="Entities\Age.cs" />
     <Compile Include="Entities\Book.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Entities\CheckedOutIn.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Media.cs" />
+    <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
