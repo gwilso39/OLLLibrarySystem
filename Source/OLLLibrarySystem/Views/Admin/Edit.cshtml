@@ -1,18 +1,19 @@
 ﻿@model OLLLibrarySystem.Domain.Entities.Book
 
 @{
-    ViewBag.Title = "Admin: Edit " + @Model.Title;
+    ViewBag.Title = "Admin: Edit " + @Model.BookTitle;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="panel">
     <div class="panel-heading">
-        <h3>Edit @Model.Title</h3>
+        <h3>Edit @Model.BookTitle</h3>
     </div>
 
     @using (Html.BeginForm("Edit", "Admin"))
     {
         <div class="panel-body">
+            @Html.HiddenFor(m => m.BookID)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 if (property.PropertyName != "BookID")

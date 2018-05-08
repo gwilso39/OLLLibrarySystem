@@ -25,7 +25,7 @@
         {
         <tr>
             <td class="text-center">@line.Quantity</td>
-            <td class="text-left">@line.Book.Title</td>
+            <td class="text-left">@line.Book.BookTitle</td>
             <td class="text-right">@line.Book.ReplacementCost.ToString("c")</td>
             <td class="text-right">
                 @((line.Quantity * line.Book.ReplacementCost).ToString("c"))

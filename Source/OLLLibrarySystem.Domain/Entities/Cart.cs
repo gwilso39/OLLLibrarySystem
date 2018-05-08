@@ -30,6 +30,19 @@ namespace OLLLibrarySystem.Domain.Entities
             }
         }
 
+        public void ReduceItem(Book book, int quantity)
+        {
+            CartLine line = lineCollection
+                .Where(p => p.Book.BookID == book.BookID)
+                .FirstOrDefault();
+
+            if (line.Quantity > quantity)
+            {
+                line.Quantity -= quantity;
+            }
+            else { RemoveLine(book); }
+        }
+
         public void RemoveLine(Book book)
         {
             lineCollection.RemoveAll((Predicate<CartLine>)(l => l.Book.BookID == book.BookID));

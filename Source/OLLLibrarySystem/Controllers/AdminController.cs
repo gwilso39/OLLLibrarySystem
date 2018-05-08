@@ -35,7 +35,7 @@ namespace OLLLibrarySystem.Controllers
             if (ModelState.IsValid)
             {
                 repository.SaveBook(book);
-                TempData["message"] = string.Format("{0} has been saved", book.Title);
+                TempData["message"] = string.Format("{0} has been saved", book.BookTitle);
                 return RedirectToAction("Index");
             }
             else
@@ -50,16 +50,16 @@ namespace OLLLibrarySystem.Controllers
             return View("Edit", new Book());
         }
 
-        //[HttpPost]
-        //public ActionResult Delete(int bookId)
-        //{
-        //    Book deletedBook = repository.DeleteBook(bookId);
-        //    if (deletedBook != null)
-        //    {
-        //        TempData["message"] = string.Format("{0} was deleted",
-        //            deletedBook.Title);
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public ActionResult Delete(int bookId)
+        {
+            Book deletedBook = repository.DeleteBook(bookId);
+            if (deletedBook != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted",
+                    deletedBook.BookTitle);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

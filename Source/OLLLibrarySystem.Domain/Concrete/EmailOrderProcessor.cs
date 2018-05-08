@@ -63,7 +63,7 @@ namespace OLLLibrarySystem.Domain.Concrete
                 {
                     var subtotal = line.Book.ReplacementCost * line.Quantity;
                     body.AppendFormat("{0} x {1} (subtotal: {2:c}", line.Quantity,
-                                      line.Book.Title,
+                                      line.Book.BookTitle,
                                       subtotal);
                 }
 

@@ -49,8 +49,8 @@ namespace OLLLibrarySystem.Controllers
                 .FirstOrDefault(p => p.BookID == bookId);
 
             if (book != null)
-            {
-                cart.RemoveLine(book);
+            {                
+                cart.ReduceItem(book, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }

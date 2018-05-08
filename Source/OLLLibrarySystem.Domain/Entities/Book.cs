@@ -14,7 +14,8 @@ namespace OLLLibrarySystem.Domain.Entities
         public int BookID { get; set; }
 
         [Required(ErrorMessage = "Please enter a Book Title")]
-        public string Title { get; set; }
+        [Column("Title")]
+        public string BookTitle { get; set; }
         [DataType(DataType.MultilineText)]
         
         public int LexileUpper { get; set; }

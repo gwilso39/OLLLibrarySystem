@@ -17,5 +17,7 @@ namespace OLLLibrarySystem.Domain.Abstract
         IEnumerable<Users> Users { get; }
 
         void SaveBook(Book book);
+
+        Book DeleteBook(int bookID);
     }
 }

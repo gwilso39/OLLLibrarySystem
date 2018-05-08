@@ -30,7 +30,7 @@ namespace OLLLibrarySystem.Domain.Concrete
                 Book dbEntry = context.Book.Find(book.BookID);
                 if (dbEntry != null)
                 {
-                    dbEntry.Title = book.Title;
+                    dbEntry.BookTitle = book.BookTitle;
                     dbEntry.LexileUpper = book.LexileUpper;
                     dbEntry.LexileLower = book.LexileLower;
                     dbEntry.LocationID = book.LocationID;
@@ -45,6 +45,17 @@ namespace OLLLibrarySystem.Domain.Concrete
                 }
             }
             context.SaveChanges();
+        }
+
+        public Book DeleteBook(int bookID)
+        {
+            Book dbEntry = context.Book.Find(bookID);
+            if(dbEntry != null)
+            {
+                context.Book.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
         }
     }
 }
