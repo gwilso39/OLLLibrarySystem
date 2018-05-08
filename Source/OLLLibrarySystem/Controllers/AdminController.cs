@@ -6,8 +6,9 @@ using System.Web.Mvc;
 using OLLLibrarySystem.Domain.Abstract;
 using OLLLibrarySystem.Domain.Entities;
 
-namespace OLLLibrarySystem.Controllers
+namespace OLLLibrarySystem.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IEntitiesRepository repository;

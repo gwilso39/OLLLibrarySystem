@@ -7,7 +7,7 @@ using OLLLibrarySystem.Domain.Abstract;
 using OLLLibrarySystem.Domain.Entities;
 using OLLLibrarySystem.WebUI.Models;
 
-namespace OLLLibrarySystem.Controllers
+namespace OLLLibrarySystem.WebUI.Controllers
 {
     public class CartController : Controller
     {

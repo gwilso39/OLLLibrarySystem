@@ -9,6 +9,8 @@ using Moq;
 using OLLLibrarySystem.Domain.Abstract;
 using OLLLibrarySystem.Domain.Entities;
 using OLLLibrarySystem.Domain.Concrete;
+using OLLLibrarySystem.WebUI.Infrastructure.Abstract;
+using OLLLibrarySystem.WebUI.Infrastructure.Concrete;
 
 namespace OLLLibrarySystem.WebUI.Infrastructure
 {
@@ -44,6 +46,8 @@ namespace OLLLibrarySystem.WebUI.Infrastructure
 
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
                 .WithConstructorArgument("settings", emailSettings);
+
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
 
             //Mock<IEntitiesRepository> mock = new Mock<IEntitiesRepository>();
             //mock.Setup(m => m.Book).Returns(new List<Book>
