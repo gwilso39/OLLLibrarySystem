@@ -18,5 +18,33 @@ namespace OLLLibrarySystem.Domain.Concrete
         public IEnumerable<Media> Media { get { return context.Media; } }
         public IEnumerable<Subject> Subject { get { return context.Subject; } }
         public IEnumerable<Users> Users { get { return context.Users; } }
+
+        public void SaveBook(Book book)
+        {
+            if (book.BookID == 0)
+            {
+                context.Book.Add(book);
+            }
+            else
+            {
+                Book dbEntry = context.Book.Find(book.BookID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Title = book.Title;
+                    dbEntry.LexileUpper = book.LexileUpper;
+                    dbEntry.LexileLower = book.LexileLower;
+                    dbEntry.LocationID = book.LocationID;
+                    dbEntry.CheckedOutInID = book.CheckedOutInID;
+                    dbEntry.RecAge = book.RecAge;
+                    dbEntry.Author = book.Author;
+                    dbEntry.Genre = book.Genre;
+                    dbEntry.Description = book.Description;
+                    dbEntry.Photo = book.Photo;
+                    dbEntry.ReplacementCost = book.ReplacementCost;
+                    dbEntry.ISBN = book.ISBN;
+                }
+            }
+            context.SaveChanges();
+        }
     }
 }

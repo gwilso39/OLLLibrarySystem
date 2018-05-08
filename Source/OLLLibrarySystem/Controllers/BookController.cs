@@ -12,7 +12,7 @@ namespace OLLLibrarySystem.WebUI.Controllers
     public class BookController : Controller
     {
         private IEntitiesRepository repository;
-        public int PageSize = 2;
+        public int PageSize = 4;
 
         public BookController(IEntitiesRepository bookRepository)
         {
@@ -37,6 +37,8 @@ namespace OLLLibrarySystem.WebUI.Controllers
                         repository.Book.Where(e => e.Genre == genre).Count()
                 },
                 CurrentGenre = genre
+
+                
             };
             return View(model);
         }

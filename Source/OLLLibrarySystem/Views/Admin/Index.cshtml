@@ -1,0 +1,144 @@
+﻿@model IEnumerable<OLLLibrarySystem.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin: All Books";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3>All Books</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th class="text-center">ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@item.BookID</td>
+                    <td>@Html.ActionLink(item.Title, "Edit", new { item.BookID })</td>
+                    <td>@item.Author</td>
+                    <td>@item.Genre</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("BookID", item.BookID)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Delete" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Add a new product", "Create", null,
+                 new { @class = "btn btn-default" })
+    </div>
+</div>
+
+@*<div class="panel panel-default">
+
+
+</div>
+<h2>All Books</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LexileUpper)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LexileLower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckedOutInID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplacementCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LexileUpper)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LexileLower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckedOutInID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplacementCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
+        </td>
+    </tr>
+}
+
+</table>*@

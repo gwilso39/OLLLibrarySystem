@@ -15,5 +15,7 @@ namespace OLLLibrarySystem.Domain.Abstract
         IEnumerable<Media> Media { get; }
         IEnumerable<Subject> Subject { get; }
         IEnumerable<Users> Users { get; }
+
+        void SaveBook(Book book);
     }
 }
