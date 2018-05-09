@@ -1,0 +1,2 @@
+﻿ALTER TABLE [dbo].[Book]
+ADD [PhotoData]  VARBINARY(MAX) NULL;
