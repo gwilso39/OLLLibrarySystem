@@ -21,7 +21,7 @@
 }
 
 .well {
-    background-color: #9ee9e4;
+    background-color: #b7eeef;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -37,3 +37,8 @@ textarea {
     max-width: 280px;
 }
 
+@media (min-width: 768px) {
+    .lead {
+        font-size: 16px;
+    }
+}

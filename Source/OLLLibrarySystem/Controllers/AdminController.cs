@@ -31,10 +31,17 @@ namespace OLLLibrarySystem.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book)
+        public ActionResult Edit(Book book, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    book.PhotoMimeType = image.ContentType;
+                    book.PhotoData = new byte[image.ContentLength];
+                    image.InputStream.Read(book.PhotoData, 0, image.ContentLength);
+                }
+
                 repository.SaveBook(book);
                 TempData["message"] = string.Format("{0} has been saved", book.BookTitle);
                 return RedirectToAction("Index");

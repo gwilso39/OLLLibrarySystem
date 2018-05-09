@@ -45,5 +45,8 @@ namespace OLLLibrarySystem.Domain.Entities
 
         [Required(ErrorMessage = "Please enter an ISBN for this book")]
         public string ISBN { get; set; }
+
+        public byte[] PhotoData { get; set; }
+        public string PhotoMimeType { get; set; }
     }
 }

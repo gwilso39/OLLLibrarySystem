@@ -35,7 +35,8 @@ namespace OLLLibrarySystem.WebUI.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Incorrect username or password");
-                    return View();
+                    return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+                    //return View();
                 }
             }
             else

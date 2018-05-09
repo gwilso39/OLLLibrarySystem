@@ -42,6 +42,8 @@ namespace OLLLibrarySystem.Domain.Concrete
                     dbEntry.Photo = book.Photo;
                     dbEntry.ReplacementCost = book.ReplacementCost;
                     dbEntry.ISBN = book.ISBN;
+                    dbEntry.PhotoData = book.PhotoData;
+                    dbEntry.PhotoMimeType = book.PhotoMimeType;
                 }
             }
             context.SaveChanges();

@@ -1,20 +1,32 @@
 ﻿@model OLLLibrarySystem.Domain.Entities.Book
 
 <div class="well">
-    <h3>
-        <strong><I>@Model.BookTitle</I></strong>
-        by @Model.Author
-        <span class="pull-right label label-primary">@Model.CheckedOutInID</span>
-    </h3>
 
-    @using (Html.BeginForm("AddToCart", "Cart"))
+    @if (Model.PhotoData != null)
     {
-        <div class="pull-right">
-            @Html.HiddenFor(x => x.BookID)
-            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            <input type="submit" class="btn btn-info" value="Add to cart" />
+        <div class="pull-left" style="margin-right: 10px">
+            <img class="img-thumbnail" width="75" height="75"
+                 src="@Url.Action("GetImage", "Book",
+                new { Model.BookID })" />
         </div>
     }
 
+        <h3>
+            <strong><I>@Model.BookTitle</I></strong>
+            <span class="lead">by @Model.Author</span>
+            <span class="label label-warning pull-right">IN@*TODO@Model.CheckedOutInID*@</span>
+        </h3>
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+
+        <div class="pull-right">
+            @Html.HiddenFor(x => x.BookID)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Add to cart" />
+        </div>
+    }
+
+
     <span class="lead"> @Model.Description</span>
+
 </div>

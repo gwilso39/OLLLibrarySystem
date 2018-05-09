@@ -42,5 +42,19 @@ namespace OLLLibrarySystem.WebUI.Controllers
             };
             return View(model);
         }
+
+        public FileContentResult GetImage(int bookId)
+        {
+            Book b = repository.Book
+                .FirstOrDefault(p => p.BookID == bookId);
+            if (b != null)
+            {
+                return File(b.PhotoData, b.PhotoMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

@@ -351,11 +351,12 @@ CREATE TABLE Book
 	RecAge				int				NULL,
 	Title				nvarchar(40)	NOT NULL,
 	Author				nvarchar(40)	NOT NULL,
-	Genre				nvarchar(25)	NOT NULL,
+	Genre				nvarchar(40)	NOT NULL,
 	Description			text			NOT NULL,
-	Photo				text			NULL,
+	Photo				varbinary(max)	NULL,
+	PhotoMimeType		varchar(50)		NULL,
 	ReplacementCost		money			NOT NULL,
-	ISBN				varchar(30)		NOT NULL,
+	ISBN				varchar(50)		NOT NULL,
 
 		CONSTRAINT PK_Book
 		  PRIMARY KEY (BookID),
@@ -372,16 +373,16 @@ INSERT INTO Book (LexileUpper, LexileLower, LocationID, CheckedOutInID, RecAge,
 	values	  (1040, 800, 3, 2, 1, 'Farewell to Manzanar', 'Jeanne Wakatsuki Houston', 'Non-Fiction',
 			 'During WWII a community called Manzanar was created in the high mountain desert
 			  country of California.  Its purpose was to house thousands of Japanese Americans.',
-			  '', 10, 1328742113),
+			  '', '', 10, 1328742113),
 			  (700, 500, 4, 2, 1, 'Girl, Stolen', 'April Henry', 'Mystery/Suspense',
 			 'When Cheyenne''s mother stops to fill a prescription for her pneumonia, a thief
 			  steals the car with Cheyenne asleep in the back seat.  Can a blind, sick girl
 			  manage to escape her kidnapper?',
-			  '', 5, 139780545921756),
+			  '', '', 5, 139780545921756),
 			  (700, 500, 6, 2, 1, 'Divergent', 'Veronica Roth', 'Science Fiction',
 			 'Post apocalyptic Chicago is organized into 5 distinct factions. Each focuses on a particular
 			 virtue. At age 16, Beatrice must decide who she will be.',
-			  '', 12, 139780062387240);
+			  '', '', 12, 139780062387240);
 
 USE LourdesAcademy;
 

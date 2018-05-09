@@ -15,6 +15,7 @@ namespace OLLLibrarySystem.WebUI.Infrastructure.Concrete
             bool result = FormsAuthentication.Authenticate(username, password);
             if (result)
             {
+                //something else here???
                 FormsAuthentication.SetAuthCookie(username, false);
             }
             return result;
