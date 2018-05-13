@@ -6,6 +6,7 @@ using Moq;
 using OLLLibrarySystem.Domain.Abstract;
 using OLLLibrarySystem.Domain.Entities;
 using OLLLibrarySystem.WebUI.Controllers;
+using OLLLibrarySystem.WebUI.Models;
 using System.Web.Mvc;
 
 namespace OLLLibrarySystem.UnitTests
@@ -13,32 +14,32 @@ namespace OLLLibrarySystem.UnitTests
     [TestClass]
     public class UnitTest1
     {
-        //[TestMethod]
-        //public void Can_Paginate()
-        //{
-        //    //Arrange
-        //    Mock<IProductRepository> mock = new Mock<IProductRepository>();
-        //    mock.Setup(m => m.Products).Returns(new Product[]
-        //    {
-        //        new Product {ProductID = 1, Name = "P1"},
-        //        new Product {ProductID = 2, Name = "P2"},
-        //        new Product {ProductID = 3, Name = "P3"},
-        //        new Product {ProductID = 4, Name = "P4"},
-        //        new Product {ProductID = 5, Name = "P5"},
-        //    });
+        [TestMethod]
+        public void Can_Paginate()
+        {
+            //Arrange
+            Mock<IEntitiesRepository> mock = new Mock<IEntitiesRepository>();
+            mock.Setup(m => m.Book).Returns(new Book[]
+            {
+                new Book {BookID = 1, BookTitle = "P1"},
+                new Book {BookID = 2, BookTitle = "P2"},
+                new Book {BookID = 3, BookTitle = "P3"},
+                new Book {BookID = 4, BookTitle = "P4"},
+                new Book {BookID = 5, BookTitle = "P5"},
+            });
 
-        //    ProductController controller = new ProductController(mock.Object);
-        //    controller.PageSize = 3;
+            BookController controller = new BookController(mock.Object);
+            controller.PageSize = 3;
 
-        //    //Act
-        //    ProductsListViewModel result = (ProductsListViewModel)controller.List(null, 2).Model;
+            //Act
+            //BookListViewModel result = (BookListViewModel)controller.List(null, 2).Model;
 
-        //    //Assert
-        //    Product[] prodArray = result.Products.ToArray();
-        //    Assert.IsTrue(prodArray.Length == 2);
-        //    Assert.AreEqual(prodArray[0].Name, "P4");
-        //    Assert.AreEqual(prodArray[1].Name, "P5");
-        //}
+            //Assert
+            //Book[] bkArray = result.Book.ToArray();
+            //Assert.IsTrue(bkArray.Length == 2);
+            //Assert.AreEqual(bkArray[0].BookTitle, "P4");
+            //Assert.AreEqual(bkArray[1].BookTitle, "P5");
+        }
 
         //[TestMethod]
         //public void Can_Generate_Page_Links()
