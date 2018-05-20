@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using OLLLibrarySystem.Domain.Entities;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace OLLLibrarySystem.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
         public DbSet<Book> Book { get; set; }
         public DbSet<Access> Access { get; set; }
         public DbSet<Age> Age { get; set; }

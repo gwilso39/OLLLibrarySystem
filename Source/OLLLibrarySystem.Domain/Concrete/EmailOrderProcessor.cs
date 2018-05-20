@@ -12,15 +12,15 @@ namespace OLLLibrarySystem.Domain.Concrete
 {
     public class EmailSettings
     {
-        public string MailToAddress = "orders@example.com";
-        public string MailFromAddress = "LibrarySystem@example.com";
+        public string MailToAddress = "greg.wilson5@outlook.com";//TODO Send to location owners
+        public string MailFromAddress = "noreply@LourdesAcademyLibrary.net";
         public bool UseSsl = true;
         public string Username = "MySmtpUsername";
         public string Password = "MySmtpPassword";
         public string ServerName = "smtp.example.com";
         public int ServerPort = 587;
-        public bool WriteAsFile = true;
-        public string FileLocation = @"c:\library_system_emails";
+        public bool WriteAsFile = true;//Set to false if e-mail is to be sent - else will save to file.
+        public string FileLocation = @"C:\Users\gregw\source\repos\OLLLibrarySystem\Orders";
     }
 
     public class EmailOrderProcessor : IOrderProcessor
@@ -55,34 +55,42 @@ namespace OLLLibrarySystem.Domain.Concrete
                 }
 
                 StringBuilder body = new StringBuilder()
-                    .AppendLine("A new order has been submitted")
-                    .AppendLine("---")
+                    .AppendFormat("{0} has requested to check out the following items:\n", shippingInfo.Name)
+                    .AppendLine("-----------------------")
                     .AppendLine("Items:");
 
+                var i = 1;
+                decimal value = 0;
                 foreach (var line in cart.Lines)
                 {
+                    
                     var subtotal = line.Book.ReplacementCost * line.Quantity;
-                    body.AppendFormat("{0} x {1} (subtotal: {2:c}", line.Quantity,
-                                      line.Book.BookTitle,
-                                      subtotal);
+                    body.AppendLine($"{i}.  {line.Quantity} x {line.Book.BookTitle} (subtotal: {subtotal:c})");
+                    body.AppendLine("");
+                    i++;
+                    value += subtotal;
                 }
 
-                body.AppendFormat("Total order value: ")
-                    .AppendLine("---")
-                    .AppendLine("Ship to:")
+                body.AppendLine("-----------------------");
+                body.AppendFormat("Total order value: {0:c}\n", value)
+                    .AppendLine("-----------------------")
+                    .AppendLine("Deliver items to:")
                     .AppendLine(shippingInfo.Name)
-                    .AppendLine(shippingInfo.Line1)
-                    .AppendLine(shippingInfo.Line2 ?? "")
-                    .AppendLine(shippingInfo.Line3 ?? "")
-                    .AppendLine(shippingInfo.City)
-                    .AppendLine(shippingInfo.State ?? "")
-                    .AppendLine(shippingInfo.Zip)
-                    .AppendLine("---");
+                    .AppendLine($"Grade: {shippingInfo.Grade}")
+                    .AppendLine($"Teacher: {shippingInfo.HomeroomTeacher}")
+
+                    //.AppendLine(shippingInfo.Line1)
+                    //.AppendLine(shippingInfo.Line2 ?? "")
+                    //.AppendLine(shippingInfo.Line3 ?? "")
+                    //.AppendLine(shippingInfo.City)
+                    //.AppendLine(shippingInfo.State ?? "")
+                    //.AppendLine(shippingInfo.Zip)
+                    .AppendLine("-----------------------");
 
                 MailMessage mailMessage = new MailMessage(
                                        emailSettings.MailFromAddress,   // From
                                        emailSettings.MailToAddress,     // To
-                                       "New order submitted!",          // Subject
+                                       "New Book Request!",             // Subject
                                        body.ToString());                // Body
 
                 if (emailSettings.WriteAsFile)

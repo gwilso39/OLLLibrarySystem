@@ -8,6 +8,22 @@ namespace OLLLibrarySystem.Domain.Entities
     {
         public int CheckedOutInID { get; set; }
         public string Status { get; set; }
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
+
+        public void ToggleStatusHold ()
+        {
+            
+        }
+
+        public void ToggleStatusOutIn ()
+        {
+            if (CheckedOutInID == 0)
+                {
+                    
+            }
+        }
+
     }
+
+    
 }

@@ -17,7 +17,7 @@ namespace OLLLibrarySystem.Domain.Entities
         [Column("Title")]
         public string BookTitle { get; set; }
         [DataType(DataType.MultilineText)]
-        
+
         public int LexileUpper { get; set; }
         public int LexileLower { get; set; }
 

@@ -1,0 +1,17 @@
+X-Sender: LibrarySystem@LourdesAcademy.net
+X-Receiver: orders@example.com
+MIME-Version: 1.0
+From: LibrarySystem@LourdesAcademy.net
+To: orders@example.com
+Date: 17 May 2018 09:35:14 -0400
+Subject: New Book Request!
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Greg Wilson has requested to check out the following items:=0A---=
+=0D=0AItems:=0D=0A1.  1 x Farewell to Manzanar (subtotal: $10.00)=
+=0D=0A2.  1 x Girl, Stolen (subtotal: $5.00)=0D=0A3.  1 x The Nig=
+ht Gardner (subtotal: $13.87)=0D=0A=0D=0ATotal order value: $28.8=
+7=0A---=0D=0ADeliver items to:=0D=0AGreg Wilson=0D=0A22 Waterbluf=
+f Drive=0D=0A=0D=0A=0D=0AOrmond Beach=0D=0AFL=0D=0A32174=0D=0A---=
+--------------------=0D=0A

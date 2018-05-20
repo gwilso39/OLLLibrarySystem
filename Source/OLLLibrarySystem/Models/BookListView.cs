@@ -8,9 +8,8 @@ namespace OLLLibrarySystem.WebUI.Models
 {
     public class BookListViewModel
     {
-        public IEnumerable<Book> Book { get; set; }
+        public IEnumerable<BookStatusView> Book { get; set; }
         public PagingInfo PagingInfo { get; set; }
         public string CurrentGenre { get; set; }
-        public string Status { get; set; }//Attempt at dispaying data from a join...
     }
 }

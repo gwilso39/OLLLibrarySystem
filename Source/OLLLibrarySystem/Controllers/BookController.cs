@@ -21,13 +21,33 @@ namespace OLLLibrarySystem.WebUI.Controllers
 
         public ViewResult List(string genre, int page = 1)
         {
-            BookListViewModel model = new BookListViewModel
-            {
-                Book = repository.Book
+            var books = repository.Book
                             .Where(p => genre == null || p.Genre == genre)
                             .OrderBy(p => p.BookID)
                             .Skip((page - 1) * PageSize)
-                            .Take(PageSize),
+                            .Take(PageSize);
+
+            var bookViews = books.Join(repository.CheckedOutIn
+                                      , b => b.CheckedOutInID
+                                      , c => c.CheckedOutInID
+                                      , (b, c) => new BookStatusView
+                                      {
+                                          book = b,
+                                          status = c.Status
+                                      });
+
+            var bookLocations = books.Join(repository.Location
+                          , b => b.LocationID
+                          , l => l.LocationID
+                          , (b, l) => new BookStatusView
+                          {
+                              book = b,
+                              location = l.Description
+                          });
+
+            BookListViewModel model = new BookListViewModel
+            {
+                Book = bookViews,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,

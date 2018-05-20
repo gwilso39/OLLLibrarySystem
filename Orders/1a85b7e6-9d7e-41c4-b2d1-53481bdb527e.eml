@@ -1,0 +1,15 @@
+X-Sender: LibrarySystem@LourdesAcademy.net
+X-Receiver: orders@example.com
+MIME-Version: 1.0
+From: LibrarySystem@LourdesAcademy.net
+To: orders@example.com
+Date: 17 May 2018 09:03:58 -0400
+Subject: New order submitted!
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+A new order has been submitted=0D=0A---=0D=0AItems:=0D=0A1. 1 x F=
+arewell to Manzanar (subtotal: $10.00)=0A2. 1 x Divergent (subtot=
+al: $12.00)=0A=0A Total order value: ---=0D=0ADeliver items to:=0D=0A=
+Greg Wilson=0D=0A22 Waterbluff Drive=0D=0A=0D=0A=0D=0AOrmond Beac=
+h=0D=0AFL=0D=0A32174=0D=0A---=0D=0A
